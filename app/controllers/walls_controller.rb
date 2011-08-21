@@ -4,7 +4,9 @@ class WallsController < ApplicationController
     @wall = Wall.new
   end
   
- 
+  def index 
+    current_user.membered_walls
+  end
 
   def show
     @wall = Wall.find(params[:id])
