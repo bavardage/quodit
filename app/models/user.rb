@@ -14,4 +14,18 @@ class User < ActiveRecord::Base
       user.email = auth["user_info"]["email"]
     end
   end
+
+  def admined_walls
+   Wall.find(:all, 
+             :joins => {:memberships => :user}, 
+             :conditions => {:memberships => { :role => "admin", 
+                                               :user_id => u}})
+  end
+
+  def membered_walls
+    Wall.find(:all, 
+             :joins => {:memberships => :user}, 
+             :conditions => {:memberships => { :role => "member", 
+                                               :user_id => u}})
+  end
 end
