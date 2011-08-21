@@ -1,0 +1,6 @@
+Quotes for the wall <%= @wall.name %>
+
+<%= @quotes.each do |q| %>
+
+"<%= q.text %>" submitted by <%= q.author %>
+<% end %>

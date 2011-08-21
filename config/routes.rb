@@ -5,6 +5,10 @@ Quodit::Application.routes.draw do
 
   resources :users
 
+  resources :walls do
+    resources :quotes
+  end
+
 
   root :to => "home#index"
 
