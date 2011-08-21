@@ -66,6 +66,6 @@ class WallsController < ApplicationController
     if current_user.has_role(wall, "member")
       redirect_to wall_path(@wall)
     else
-      
+    end
   end
 end
