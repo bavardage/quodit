@@ -1,10 +1,7 @@
-<h2>Wall - <%= @wall.name %></h2>
+<%= render 'headbar' %>
 
-<h3> <%= link_to  "Add new", new_wall_quote_path(@wall) %>
+<%= link_to  "Add new", new_wall_quote_path(@wall) %>
 
-<h3> Latest: </h3>
-<ul>
-<% @wall.quotes.each do |q| %>
-<li><%= q.text %></li>
-<% end %>
-</ul>
+<%= render 'quotes' %>
+
+
