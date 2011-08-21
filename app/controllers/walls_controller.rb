@@ -10,7 +10,8 @@ class WallsController < ApplicationController
 
   def create
     @wall = Wall.new params[:wall]
-    @wall.users << current_user
+    m = Membership.new :user => current_user, :wall => @wall, :role => "admin"
+    m.save
 
     respond_to do |format|
       if @wall.save
