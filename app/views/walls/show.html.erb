@@ -1,0 +1,10 @@
+<h1>Wall - <%= @wall.name %></h1>
+
+<%= link_to  "add a new quote to this wall", new_wall_quote_path(@wall) %>
+
+There are quotes:
+<ul>
+<% @wall.quotes.each do |q| %>
+<li>Quote - <%= q %></li>
+<% end %>
+</ul>
