@@ -12,7 +12,7 @@ class QuotesController < ApplicationController
       @quote.destroy
     end
     respond_to do |format|
-      format.html { redirect_to(Wall.find(params[:wall_id]) }
+      format.html { redirect_to wall_path(@quote.wall) }
     end
   end 
 

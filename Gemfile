@@ -9,6 +9,8 @@ gem 'sqlite3'
 
 gem 'jquery-rails', '>= 1.0.12'
 
+gem "nested_form"
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
