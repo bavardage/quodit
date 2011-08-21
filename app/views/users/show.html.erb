@@ -1,4 +1,13 @@
 <% content_for(:title) { "Home" } %>
+Hi, <%= current_user.name %>. 
 
-This is your profile
+<h3> You are member of </h3>
+
+<ul>
+<% current_user.membered_walls.each do |w| %>
+<li> <%= link_to w.name, wall_path(w) %>
+<% end %>
+</ul>
+
+<h3> <%= link_to "Create new wall", new_wall_path %>
 
