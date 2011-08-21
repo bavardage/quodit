@@ -32,8 +32,9 @@ class User < ActiveRecord::Base
   def has_role(wall, role)
     #TODO: cache this?!
     Wall.find(:first,
-              :joins => {:memberships => :user},
+              :joins => :memberships,
               :conditions => {:memberships => {:role => role,
-                  :wall_id => wall}})
+                                               :wall_id => wall,
+                                               :user_id => self}})
   end
 end
