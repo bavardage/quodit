@@ -9,6 +9,7 @@ Quodit::Application.routes.draw do
 
   resources :walls do
     resources :quotes
+    member { get 'autocomplete_member/:search', :action => "autocomplete_member" }
   end
 
 
