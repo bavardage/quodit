@@ -1,0 +1,54 @@
+
+.tag
+{
+	border-radius:5px;
+	background-color: #DDEEFF;
+	padding:3px;
+	border: 1px solid #AABBFF;
+}
+
+ul#tags_drop_down 
+{
+padding:0;
+margin:0;
+border: 1px solid #DDDDDD;
+}
+
+ul#tags_drop_down li
+{
+	display:block;
+	width:300px;
+	padding:0;
+	margin:0;
+	background-color: #FFFFFF;
+}
+
+ul#tags_drop_down li a
+{
+	display:block;
+	width:270px;
+	vertical-align: center;
+	text-align: left;
+	padding:15px;
+	margin:0px;
+	text-decoration:none;
+	color:#445588;
+
+}
+
+ul#tags_drop_down li a:hover
+{
+	background-color: #DDEEFF;
+}
+
+ul#tags_drop_down li.selected
+{
+	background-color: #DDFFFF;
+	box-shadow: 0px 0px 15px #BEF;
+}
+
+#tags_drop_down_container
+{
+	z-index:500;
+	position:absolute;
+}

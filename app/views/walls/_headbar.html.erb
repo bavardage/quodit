@@ -1,0 +1,14 @@
+<div id="headbar">
+	<div id="headbar_center">
+	<h2 id="wallname"><%= @wall.name %></h2>
+	</div>
+	<div id="headbar_right">
+	<div id="user">
+		  <% if current_user %>
+			<%= link_to "Log Out", signout_path %>
+		  <% else %>
+			<%= link_to "Sign In with Facebook", "/auth/facebook" %>
+		  <% end %>
+	</div>
+	</div>
+</div>
