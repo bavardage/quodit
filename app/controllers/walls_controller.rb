@@ -70,4 +70,23 @@ class WallsController < ApplicationController
       request.save
     end
   end
+
+  def autocomplete_member
+    members = User.where(["name like ?", "%#{params[:search]}%"]).joins(:memberships).where(:memberships => {:wall_id => params[:id]})
+
+    json = []
+    
+    members.each do |m|
+      json << {:label => m.name, :value => m.uid}
+    end
+
+    # current_user.facebook_user(session[:token]).friends.each do |f|
+    #   json << {:label => f.name, :value => f.id }
+    # end
+
+    respond_to do |format|
+      format.json { render :json => json }
+      format.html { render :json => json }
+    end
+  end
 end
