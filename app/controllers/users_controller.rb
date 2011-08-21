@@ -16,5 +16,4 @@ class UsersController < ApplicationController
       format.json { render :json => current_user.facebook_user(session[:token]).friends }
     end
   end
-
 end

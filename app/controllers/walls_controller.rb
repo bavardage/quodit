@@ -63,7 +63,7 @@ class WallsController < ApplicationController
   def request_membership
     @wall = Wall.find(params[:id])
     
-    if current_user.has_role(wall, "member")
+    if current_user.has_role(@wall, "member")
       redirect_to wall_path(@wall)
     else
       request = Membership.new :user => current_user, :wall => @wall, :role => "request"
@@ -88,5 +88,10 @@ class WallsController < ApplicationController
       format.json { render :json => json }
       format.html { render :json => json }
     end
+  end
+
+  def invite_facebook
+    uid = params["uid"]
+    user = User.create_user(uid, "facebook")
   end
 end

@@ -6,12 +6,40 @@ class User < ActiveRecord::Base
 
   has_many :authored_quotes, :class_name => "Quote", :foreign_key => "author_id"
 
+
+  def self.create_user(provider, uid)
+    user = User.find_by_provider_and_uid(provider, uid)
+    unless user
+      create! do |user|
+        user.provider = provider
+        user.uid = uid
+        user.active = false
+      end
+    else
+      user
+    end
+  end
+
   def self.create_with_omniauth(auth)
-    create! do |user|
-      user.provider = auth["provider"]
-      user.uid = auth["uid"]
-      user.name = auth["user_info"]["name"]
-      user.email = auth["user_info"]["email"]
+    # return or create user
+    user = User.find_by_provider_and_uid(auth["provider"], auth["uid"])
+
+    if user
+      # unless 
+      #   user.active = true
+      #   user.name = auth["user_info"]["name"]
+      #   user.email = auth["user_info"]["email"]
+      #   user.save
+      # end
+      user
+    else
+      create! do |user|
+        user.provider = auth["provider"]
+        user.uid = auth["uid"]
+        user.name = auth["user_info"]["name"]
+        user.email = auth["user_info"]["email"]
+        user.active = true
+      end
     end
   end
 

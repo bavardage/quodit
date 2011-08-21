@@ -9,7 +9,11 @@ Quodit::Application.routes.draw do
 
   resources :walls do
     resources :quotes
-    member { get 'autocomplete_member/:search', :action => "autocomplete_member" }
+    member do
+      get 'request_membership'
+      get 'autocomplete_member/:search', :action => "autocomplete_member", :as => "autocomplete_member"
+      get 'invite_facebook/:uid', :action => "invite_facebook"
+    end
   end
 
 
