@@ -3,6 +3,8 @@ class WallsController < ApplicationController
   def new
     @wall = Wall.new
   end
+  
+ 
 
   def show
     @wall = Wall.find(params[:id])
