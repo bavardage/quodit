@@ -16,16 +16,24 @@ class User < ActiveRecord::Base
   end
 
   def admined_walls
-   Wall.find(:all, 
-             :joins => {:memberships => :user}, 
-             :conditions => {:memberships => { :role => "admin", 
-                                               :user_id => u}})
+   @admined_walls ||= Wall.find(:all, 
+                                :joins => {:memberships => :user}, 
+                                :conditions => {:memberships => {:role => "admin", 
+                                                                 :user_id => self.id}})
   end
 
   def membered_walls
-    Wall.find(:all, 
-             :joins => {:memberships => :user}, 
-             :conditions => {:memberships => { :role => "member", 
-                                               :user_id => u}})
+    @membered_walls ||= Wall.find(:all, 
+                                  :joins => {:memberships => :user}, 
+                                  :conditions => {:memberships => {:role => "member",
+                                                                   :user_id => self.id}})
+  end
+
+  def has_role(wall, role)
+    #TODO: cache this?!
+    Wall.find(:first,
+              :joins => {:memberships => :user},
+              :conditions => {:memberships => {:role => role,
+                  :wall_id => wall}})
   end
 end
