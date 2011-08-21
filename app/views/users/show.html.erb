@@ -1,0 +1,4 @@
+<% content_for(:title) { "Home" } %>
+
+Welcome <%= current_user.name %>!
+<%= link_to "Sign Out", signout_path %>
