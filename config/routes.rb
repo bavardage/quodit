@@ -3,7 +3,9 @@ Quodit::Application.routes.draw do
   match "/signout" => "sessions#destroy", :as => :signout
 
 
-  resources :users
+  resources :users do
+    member { get 'facebook_friends' }
+  end
 
   resources :walls do
     resources :quotes

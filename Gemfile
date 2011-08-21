@@ -11,6 +11,8 @@ gem 'jquery-rails', '>= 1.0.12'
 
 gem "nested_form"
 
+gem "fb_graph"
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

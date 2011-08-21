@@ -37,4 +37,9 @@ class User < ActiveRecord::Base
                                                :wall_id => wall,
                                                :user_id => self}})
   end
+
+  def facebook_user(token)
+    FbGraph::User.me(token)
+  end
+    
 end
