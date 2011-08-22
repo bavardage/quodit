@@ -103,11 +103,12 @@
 	var ul = $("<ul>").attr("id", "tags_drop_down");
 	var container = $("<div>").attr("id", "tags_drop_down_container").hide().append(ul);
 	var parent = $("<div>").attr("id", "tags_drop_down_container_parent").append(container);
-    
+	var box = this;
+
 	$(this).after(parent);
 	
 		$("#tags_drop_down_container").hide();
-
+		
 	this.live("keydown",function(e) 
 	{
 		if (e.keyCode == 8 && state.isTagging) // Backspace
@@ -191,7 +192,6 @@
 			}
 		}
 	});
-	var box = this;
 
 	$("ul#tags_drop_down li").live("click",function() 
 	{

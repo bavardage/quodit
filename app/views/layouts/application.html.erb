@@ -9,13 +9,19 @@
   </head>
   <body class="<%= "#{params[:controller]}-#{params[:action]}"%>">
 
-    <% if flash[:notice] %>
-      <div id="notice">
-	<%= flash[:notice] %>
-      </div>
-    <% end %>
+	<%= render 'shared/headbar' %>
+  
+	<div id="center_column">
+	  
+		<% if flash[:notice] %>
+		  <div id="notice">
+		<%= flash[:notice] %>
+		  </div>
+		<% end %>
 
-    <%= yield %>
+		<%= yield %>
+	
+	</div>
     
   </body>
 </html>
