@@ -1,6 +1,10 @@
+<% if current_user.has_role(@wall, 'member')
+
 Quotes for the wall <%= @wall.name %>
 
 <%= @quotes.each do |q| %>
 
 "<%= q.text %>" submitted by <%= q.author %>
+<% else %>
+<%  redirect_to request_membership_path %>
 <% end %>
