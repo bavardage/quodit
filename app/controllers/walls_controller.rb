@@ -72,7 +72,7 @@ class WallsController < ApplicationController
   end
 
   def autocomplete_member
-    members = User.where(["name like ?", "%#{params[:search]}%"]).joins(:memberships).where(:memberships => {:wall_id => params[:id]})
+    members = User.where(["name like ?", "%#{params[:search]}%"]).joins(:memberships).where(:memberships => {:wall_id => params[:id], :role => "member"})
 
     json = []
     
