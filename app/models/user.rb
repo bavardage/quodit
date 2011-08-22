@@ -25,12 +25,12 @@ class User < ActiveRecord::Base
     user = User.find_by_provider_and_uid(auth["provider"], auth["uid"])
 
     if user
-      # unless 
-      #   user.active = true
-      #   user.name = auth["user_info"]["name"]
-      #   user.email = auth["user_info"]["email"]
-      #   user.save
-      # end
+      unless 
+        user.active = true
+        user.name = auth["user_info"]["name"]
+        user.email = auth["user_info"]["email"]
+        user.save
+      end
       user
     else
       create! do |user|
