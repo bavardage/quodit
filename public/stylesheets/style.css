@@ -136,6 +136,8 @@ a
 	margin-bottom:6px;
 	text-align:left;
 	margin:20px;
+	margin-left:80px;
+	margin-right:80px;
 	padding:10px;
 	line-height:26px;
 	min-height: 50px;
@@ -157,11 +159,12 @@ input[type='submit']
 	padding:8px;
 	padding-left:15px;
 	padding-right:15px;
+	
 }
 .right
 {
 margin-left:auto;
-margin-right:50px;
+margin-right:150px;
 width: 100px;
 }
 #center_column

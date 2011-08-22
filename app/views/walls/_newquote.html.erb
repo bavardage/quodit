@@ -1,5 +1,20 @@
-	<div id="new_quote_box"></div>
+<script type="text/javascript">
 
+$(document).ready(function()
+{	
+	$("#new_quote_box").tagify('<%= autocomplete_member_wall_path @wall %>/');
+	$("#new_quote_box").focus();
+	$('input[type=submit]').click(function()
+	{
+		// Update things
+		$.post("/walls/2/quotes", { 'quote[text]': $("#new_quote_box").getTagifiedText() }, function(data) { console.log(data); } );
+	});
+	
+});
+
+</script>
+	
+	<div id="new_quote_box"></div>
 	<div class="right">
 	<input value="Quote It" type="submit" class="right"></input>
 	</div>

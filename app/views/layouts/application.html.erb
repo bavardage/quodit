@@ -4,7 +4,7 @@
     <title><%= yield :title %> - Quodit</title>
     <%= stylesheet_link_tag :all %>
 	<link href='http://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
-    <%= javascript_include_tag :defaults, 'jquery' %>
+    <%= javascript_include_tag :defaults, 'jquery', 'jquery.textSelect', 'jquery.tagify' %>
     <%= csrf_meta_tag %>
   </head>
   <body class="<%= "#{params[:controller]}-#{params[:action]}"%>">
