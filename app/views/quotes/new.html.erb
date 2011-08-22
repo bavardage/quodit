@@ -1,6 +1,11 @@
+<% if current_user.has_role(@wall, 'member')
+
 <h1> Create new quote </h1>
 
 <% nested_form_for [@wall, @quote] do |f| %>
 <%= f.text_area :text %>
 <%= submit_tag "Save" %>
+<% else %>
+<%  redirect_to request_membership_path %>
 <% end %>
+

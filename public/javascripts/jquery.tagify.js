@@ -25,27 +25,33 @@
 	}
 
 	var internal = {
-        updateTagSuggestions : function () {
+        updateTagSuggestions : function (jsonURL) {
 			if (!state.tagtext) return;
-			$("ul#tags_drop_down").html("");
 			
-			// Search for options
-			var createUser = $('<li id="createNew" class="option_create_new"><a href="#">Add <span class="tagname"></span> to group</a></li>');
-			var close = $('<li id="close" class="option_close"><a href="#">Close</a></li>');
-			var userTemplate = '<li id="userOption" class="option_user" value="{value}" label="{label}"><a href="#">{label}</a></li>';
-			for (var i in users)
-			{
-				var user = users[i];
-				if (user.label.toLowerCase().indexOf(state.tagtext.toLowerCase()) >= 0)
+			$.getJSON(jsonURL + state.tagtext, function(users) {
+				$("ul#tags_drop_down").html("");
+			
+				// Search for options
+				var createUser = $('<li id="createNew" class="option_create_new"><a href="#">Add <span class="tagname"></span> to group</a></li>');
+				var close = $('<li id="close" class="option_close"><a href="#">Close</a></li>');
+				var userTemplate = '<li id="userOption" class="option_user" value="{value}" label="{label}"><a href="#">{label}</a></li>';
+				for (var i in users)
 				{
-					var html = userTemplate.replace(/{label}/g, user.label).replace(/{value}/g, user.value);
-					$("ul#tags_drop_down").append($(html));
+					var user = users[i];
+					if (user.label.toLowerCase().indexOf(state.tagtext.toLowerCase()) >= 0)
+					{
+						var html = userTemplate.replace(/{label}/g, user.label).replace(/{value}/g, user.value);
+						$("ul#tags_drop_down").append($(html));
+					}
 				}
-			}
+				
+				// $("ul#tags_drop_down").append(createUser);
+				$("ul#tags_drop_down").append(close);
+				$("ul#tags_drop_down").children().first().addClass('selected');
+				$(".tagname").text(state.tagtext);
+			});
 			
-			$("ul#tags_drop_down").append(createUser);
-			$("ul#tags_drop_down").append(close);
-			$("ul#tags_drop_down").children().first().addClass('selected');
+
         },
         selectTagSuggestion: function(box, element) {
 			if (element.is(".option_create_new"))
@@ -61,11 +67,10 @@
 				internal.endTagging();
 			}
 		},
-		setTagText: function(text)
+		setTagText: function(text, jsonURL)
 		{
 			state.tagtext = text;
-			internal.updateTagSuggestions();
-			$(".tagname").text(state.tagtext);
+			internal.updateTagSuggestions(jsonURL);
 		},
 		getSelectedOption: function()
 		{
@@ -92,7 +97,7 @@
 		}
     };
 
-  $.fn.tagify = function() {
+  $.fn.tagify = function(jsonURL) {
 	this.attr('contenteditable', true);
 
 	var ul = $("<ul>").attr("id", "tags_drop_down");
@@ -109,7 +114,7 @@
 		{
 			if (state.tagtext)
 			{
-				internal.setTagText(state.tagtext.substring(0, state.tagtext.length - 1));
+				internal.setTagText(state.tagtext.substring(0, state.tagtext.length - 1), jsonURL);
 			}
 			else
 			{
@@ -118,12 +123,14 @@
 		} else if (e.keyCode == 8)
 		{
 			var range = $.textSelect('getRange');
-			if (range.startElement.length == 0)
+			// If the cursor is in front of a token, then delete the whole token..
+			if (range.startElement.length < 2)
 			{
-				console.log("Delete!!!");
+				console.log("Delete!!");
+				console.log($(range.startElement));
 			}
 			//console.log(range.startElement);
-			// If the cursor is in front of a token, then delete the whole token..
+
 		}
 	});
 	this.live("keydown",function(e) 
@@ -163,7 +170,7 @@
 			{
 				$("#tags_drop_down_container_parent").popupDiv("#tags_drop_down_container");
 			}
-			internal.setTagText("");
+			internal.setTagText("", jsonURL);
 			state.isTagging = true;
 		}
 		else if (state.isTagging)
@@ -180,7 +187,7 @@
 			}
 			else if (e.keyCode != 8) // Not backspace
 			{
-				internal.setTagText(state.tagtext + String.fromCharCode(e.which));
+				internal.setTagText(state.tagtext + String.fromCharCode(e.which), jsonURL);
 			}
 		}
 	});

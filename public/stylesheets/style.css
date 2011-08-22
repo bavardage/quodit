@@ -54,8 +54,16 @@ span.close_quotation_mark
     padding-top: 0px;
 }
 
+#headbar_container
+{
+	width:100%;
+	position:fixed;
+	z-index:10;
+}
+
 #headbar
 {
+
 	margin: 0;
 	margin-left:auto;
 	margin-right:auto;
@@ -136,9 +144,12 @@ a
 	margin-bottom:6px;
 	text-align:left;
 	margin:20px;
+	margin-left:80px;
+	margin-right:80px;
 	padding:10px;
 	line-height:26px;
 	min-height: 50px;
+	margin-top:150px;
 }
 #new_quote_box:hover
 {
@@ -157,11 +168,12 @@ input[type='submit']
 	padding:8px;
 	padding-left:15px;
 	padding-right:15px;
+	
 }
 .right
 {
 margin-left:auto;
-margin-right:50px;
+margin-right:150px;
 width: 100px;
 }
 #center_column
@@ -172,4 +184,6 @@ width:1000px;
 box-shadow: 0px 0px 35px #CCC;
 height:1200px;
 padding:30px;
+padding-bottom:200px;
+}
 }

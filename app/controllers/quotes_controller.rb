@@ -33,7 +33,7 @@ class QuotesController < ApplicationController
     respond_to do |format|
       if @quote.save
         format.html { redirect_to wall_path(@wall) }
-        format.json { render :json => quote }
+        format.json { render :json => @quote }
       else
         format.html { render :action => :new }
         format.json { @obj = wall; render "layouts/errors.json" }

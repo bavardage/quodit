@@ -1,5 +1,45 @@
-	<div id="new_quote_box"></div>
+<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
 
+<script type="text/javascript">
+
+$.extend({URLEncode:function(c){var o='';var x=0;c=c.toString();var r=/(^[a-zA-Z0-9_.]*)/;
+  while(x<c.length){var m=r.exec(c.substr(x));
+    if(m!=null && m.length>1 && m[1]!=''){o+=m[1];x+=m[1].length;
+    }else{if(c[x]==' ')o+='+';else{var d=c.charCodeAt(x);var h=d.toString(16);
+    o+='%'+(h.length<2?'0':'')+h.toUpperCase();}x++;}}return o;},
+URLDecode:function(s){var o=s;var binVal,t;var r=/(%[^%]{2})/;
+  while((m=r.exec(o))!=null && m.length>1 && m[1]!=''){b=parseInt(m[1].substr(1),16);
+  t=String.fromCharCode(b);o=o.replace(m[1],t);}return o;}
+})
+
+$(document).ajaxSend(function(event, request, settings) {
+    if (typeof(AUTH_TOKEN) == "undefined") return;
+    if (settings.type == 'GET' || settings.type == 'get') return;
+    settings.data = settings.data || "";
+    settings.data += (settings.data ? "&" : "") + "authenticity_token=" + $.URLEncode(AUTH_TOKEN);
+    request.setRequestHeader("Content-Type", settings.contentType);
+});
+
+$(document).ready(function()
+{	
+	$("#new_quote_box").tagify('<%= autocomplete_member_wall_path @wall %>/');
+	$("#new_quote_box").focus();
+	$('input[type=submit]').click(function()
+	{
+		// Update things
+		$.post("/walls/2/quotes", 
+			{ 
+				'quote[text]': $("#new_quote_box").getTagifiedText()
+			}, 
+			function(data) { console.log(data); }, 
+			'json' );
+	});
+	
+});
+
+</script>
+	
+	<div id="new_quote_box"></div>
 	<div class="right">
 	<input value="Quote It" type="submit" class="right"></input>
 	</div>
