@@ -2,7 +2,7 @@
 	<% @wall.quotes.order("created_at DESC").each do |q| %>
 		<li id="quote">
 			<span class="open_quotation_mark">&#8220;</span>
-			<%= q.text %>
+			<%= q.nice_text %>
 			<span class="close_quotation_mark">&#8221;</span>
 		</li>
 	<% end %>
