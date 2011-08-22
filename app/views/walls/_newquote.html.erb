@@ -27,11 +27,20 @@ $(document).ready(function()
 	$('input[type=submit]').click(function()
 	{
 		// Update things
-		$.post("/walls/2/quotes", 
+		$.post("/walls/<%= @wall.id %>/quotes", 
 			{ 
 				'quote[text]': $("#new_quote_box").getTagifiedText()
 			}, 
-			function(data) { console.log(data); }, 
+			function(data) { 
+				var quote = data.quote;
+				var html = "<li id='quote'><span class='open_quotation_mark'>&#8220;</span>";
+				html += quote.text;
+				html += "<span class='close_quotation_mark'>&#8221;</span></li>";
+				var quoteItem = $(html);
+				quoteItem.hide();
+				$("ul#quotes").prepend(quoteItem);
+				quoteItem.slideDown();
+				}, 
 			'json' );
 	});
 	
