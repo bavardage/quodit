@@ -1,5 +1,5 @@
 <ul id="quotes">
-	<% @wall.quotes.each do |q| %>
+	<% @wall.quotes.order("created_at DESC").each do |q| %>
 		<li id="quote">
 			<span class="open_quotation_mark">&#8220;</span>
 			<%= q.text %>
