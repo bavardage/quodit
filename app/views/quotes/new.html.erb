@@ -1,6 +1,6 @@
 <% if current_user.has_role(@wall, 'member')
-
-<h1> Create new quote </h1>
+<% content_for :heading do %>Create new quote<% end %>
+<% content_for :title do %>Create new quote<% end %>
 
 <% nested_form_for [@wall, @quote] do |f| %>
 <%= f.text_area :text %>

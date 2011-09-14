@@ -20,32 +20,33 @@ $(document).ajaxSend(function(event, request, settings) {
     request.setRequestHeader("Content-Type", settings.contentType);
 });
 
-$(document).ready(function()
-{	
-	$("#new_quote_box").tagify('<%= autocomplete_member_wall_path @wall %>/');
-	$("#new_quote_box").focus();
-	$('input[type=submit]').click(function()
-	{
-		// Update things
-		$.post("/walls/<%= @wall.id %>/quotes", 
-			{ 
-				'quote[text]': $("#new_quote_box").getTagifiedText()
-			}, 
-			function(data) { 
-				var quote = data.quote;
-				var html = "<li id='quote'><span class='open_quotation_mark'>&#8220;</span>";
-				html += quote.text;
-				html += "<span class='close_quotation_mark'>&#8221;</span></li>";
-				var quoteItem = $(html);
-				quoteItem.hide();
-				$("ul#quotes").prepend(quoteItem);
-				quoteItem.slideDown();
-				}, 
-			'json' );
-		$("#new_quote_box").html("");
-	});
-	
+$(document).ready(function () {
+    $("#new_quote_box").tagify('<%= autocomplete_member_wall_path @wall %>/');
+    $("#new_quote_box").focus();
+    $('input[type=submit]').click(function () {
+        // Update things
+        $.post("/walls/<%= @wall.id %>/quotes",
+			{
+			    'quote[text]': $("#new_quote_box").getTagifiedText()
+			},
+			function (data) {
+			    addQuote(data.quote);
+			},
+			'json');
+			$("#new_quote_box").html("");
+			$("p.no_quotes").hide();
+    });
 });
+
+function addQuote(quote) {
+    var html = "<li id='quote'><span class='open_quotation_mark'>&#8220;</span>";
+    html += "<span class='quote_text'>" + formatQuote(quote.text) + "</span>";
+    html += "<span class='close_quotation_mark'>&#8221;</span></li>";
+    var quoteItem = $(html);
+    quoteItem.hide();
+    $("ul#quotes").prepend(quoteItem);
+    quoteItem.slideDown(function () { $(this).css("display", "block"); });
+}
 
 </script>
 	

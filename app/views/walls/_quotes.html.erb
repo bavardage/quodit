@@ -1,9 +1,21 @@
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("span.quote_text").each(function () { $(this).html(formatQuote($(this).html())); });
+        if ($("ul#quotes").children().size() == 0) {
+            $("ul#quotes").append("<p class='no_quotes'>There are no quotes. Click 'Quote It' to hang one on this wall.</p>");
+        }
+    });
+</script>
+
 <ul id="quotes">
 	<% @wall.quotes.order("created_at DESC").each do |q| %>
 		<li id="quote">
 			<span class="open_quotation_mark">&#8220;</span>
-			<%= q.nice_text %>
+			<span class="quote_text"><%= q.nice_text %></span>
 			<span class="close_quotation_mark">&#8221;</span>
+            <p class="quote_metadata first small">September, 2011 - Posted by Quentin Spencer-Harper</p>
 		</li>
 	<% end %>
 </ul>

@@ -1,6 +1,69 @@
-<h1>New</h1>
+<% content_for :heading do %>Create a new Wall<% end %>
+<% content_for :title do %>Create a new Wall<% end %>
+
+<div class="centered_form">
 
 <%= form_for @wall do |f| %>
+<%= f.label :name, "Name:" %>
 <%= f.text_field :name %>
-<%= submit_tag "Submit" %>
+<%= hidden_field_tag "members_field" %>
+
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script>
+    var members = [];
+
+    FB.init({
+        appId: '244350568932151', cookie: true,
+        status: true, xfbml: true
+    });
+
+    function processRequests(requests) {
+        for (var i in requests.request_ids) {
+            var request_id = requests.request_ids[i];
+            FB.api('/' + request_id, function (response) {
+
+
+                console.log(response);
+                var html = "<tr class='member' member_id='" + response.to.id + "'>";
+                html += "<td><img src='https://graph.facebook.com/" + response.to.id + "/picture' alt='" + response.to.name + "'></td>";
+                html += "<td><span class='name'>" + response.to.name + "</span></td></tr>";
+                $("table#members").append($(html));
+                members.push({ name: response.to.name, id: response.to.id });
+                $("table#members tr#addMemberRow").remove();
+                addAddMoreMembersButton("Add some more members");
+                $("#members_field").attr('value', $.toJson(members));
+            });
+        }
+    }
+
+    $(document).ready(function () {
+        $(".addMembers").click(addMembers);
+        addAddMoreMembersButton("Click to add members to the wall");
+    });
+
+    function addAddMoreMembersButton(text) {
+        var row = $('<tr class="member" id="addMemberRow"><td class="addMembers" style="text-align:center; color:#557; padding:10px;"><a href="#">' + text + '</a></td></tr>');
+        row.click(addMembers);
+        $("table#members").append(row);
+                
+    }
+
+    function addMembers() {
+        FB.ui({
+            method: 'apprequests',
+            message: 'I\'ve added you to the Palantir Wall.'
+        }, processRequests);
+    }
+</script>
+<br />
+<label>Members: </label>
+<table id="members" cellpadding=0 cellspacing=0>
+</table>
+<br />
+<br />
+<center>
+<%= submit_tag "Create" %>
+</center>
 <% end %>
+
+</div>

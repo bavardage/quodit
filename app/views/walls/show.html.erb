@@ -4,6 +4,10 @@
   <%= @wall.name %>
 <% end %>
 
+<% content_for :headbar_links do %>
+  <a href="#">Add Members</a> | <a href="#">Wall Settings</a>
+<% end %>
+
 <%= render 'newquote' %>
 <%= render 'quotes' %>
 

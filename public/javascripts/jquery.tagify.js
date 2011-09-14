@@ -87,7 +87,7 @@
 		{
 				if (state.tagtext)
 				{
-					var nodeHTML = "<span id='tag"+state.currentTagID+"' class='tag' contenteditable='false' value='" + user.value + "' href='#'>"+user.label+"</span>";
+					var nodeHTML = "<span id='tag"+state.currentTagID+"' class='tag' contenteditable='false' value='" + user.value + "' href='#' originalContent='" + user.label + "'>"+user.label+"</span>";
 					box.html(box.html().replace("@" + state.tagtext, nodeHTML));
 					box.focus();
 					$("#tag"+state.currentTagID).textSelect('movetoend');
@@ -132,7 +132,18 @@
 			}
 			//console.log(range.startElement);
 
+            // Check if any tokens have been modified - delete them if they have?
+            $("span.tag").each(function ()
+            {
+                if ($(this).attr("originalContent") != $(this).html())
+                {
+                    $(this).remove();
+                }
+            });
+
 		}
+
+
 	});
 	this.live("keydown",function(e) 
 	{
@@ -208,7 +219,15 @@
 		});
 		copy.find("div").each(function () 
 		{	
-			$(this).replaceWith($(this).text() + "\n") 
+			$(this).replaceWith("\n" + $(this).text()) 
+		});
+        copy.find("p:last").each(function () 
+		{	
+			$(this).replaceWith($(this).text());
+		});
+        copy.find("p").each(function () 
+		{	
+			$(this).replaceWith($(this).text() + "\n");
 		});
 		return copy.text();
   }

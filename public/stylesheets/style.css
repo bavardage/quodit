@@ -10,6 +10,28 @@ body
 	padding:0;
 	font-family: Tahoma, sans-serif;
 	font-size:14px;
+	background: #ffffff;
+}
+
+p
+{
+    color:#777;
+}
+
+p.quote_metadata
+{
+    color:#7193a8;
+    text-align:right;
+}
+
+div#notice
+{
+    border: 1px solid #DDDD00;
+    color: #A4A050;
+    background-color: #FFFFBB;
+    padding:15px;
+    text-align:center;
+    margin-bottom:40px;
 }
 
 ul#quotes
@@ -19,28 +41,57 @@ ul#quotes
 	margin-right:auto;
 }
 
-li#quote
+li#quote, p.quote_metadata, p.no_quotes
 {
-	font-family: 'Raleway', sans-serif;
-	font-size:20px;
-	display:block;
-	padding:40px;
-	padding-bottom:80px;
-	color:#343434;
+    font-family: 'Raleway', sans-serif;
+	font-size:18px;
 	line-height:30px;
 	font-weight:500;
+	font-smooth: always;
+}
+
+p.no_quotes
+{
+    text-align:center;
+    color:#666666;
+    padding:0; margin:0;
+    margin-top:80px;
+    margin-left:-40px;
+}
+
+p.quote_metadata.first
+{
+    margin-top:30px;
+}
+
+p.quote_metadata.small
+{
+    font-family: Tahoma, sans-serif;
+	font-size:14px;
+	line-height:16px;
+	color:#91B3C8;
+}
+
+li#quote
+{
+
+	display:block;
+	padding:40px;
+	padding-bottom:20px;
+	color:#343434;
 }
 
 span.open_quotation_mark, span.close_quotation_mark
 {
-	font-size:72px;
+	font-size:48px;
 	font-family: Tahoma, sans-serif;
 	color: #7193a8;
+	position: relative;
+	z-index:5;
 }
 
 span.open_quotation_mark
 {
-
     margin-top: -80px;
     padding-top: 0px;
     margin-bottom: -50px;
@@ -50,7 +101,7 @@ span.close_quotation_mark
 {
 	float: right;
 	height: 25px;
-    margin-top: 45px;
+    margin-top: 35px;
     padding-top: 0px;
 }
 
@@ -64,13 +115,12 @@ span.close_quotation_mark
 
 #headbar
 {
-
 	margin: 0;
 	margin-left:auto;
 	margin-right:auto;
 	position:relative;
 	padding:0px;
-	height:110px;
+	height:90px;
 	width:1200px;
 	border: 1px solid #00b4ff;
 	border-top:none;
@@ -78,13 +128,123 @@ span.close_quotation_mark
 	border-bottom-left-radius: 10px 10px;
 	box-shadow: 0px 0px 16px #8fbccb;
 	background: #fff;
-	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#f4fbfe));
-	background-image: -webkit-linear-gradient(top, #ffffff, #f4fbfe);
-	background-image:    -moz-linear-gradient(top, #ffffff, #f4fbfe);
-	background-image:     -ms-linear-gradient(top, #ffffff, #f4fbfe);
-	background-image:      -o-linear-gradient(top, #ffffff, #f4fbfe);
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#d4eaff));
+	background-image: -webkit-linear-gradient(top, #ffffff, #d4eaff);
+	background-image:    -moz-linear-gradient(top, #ffffff, #d4eaff);
+	background-image:     -ms-linear-gradient(top, #ffffff, #d4eaff);
+	background-image:      -o-linear-gradient(top, #ffffff, #d4eaff); /* f4fbfe */
 	display:block;
 
+}
+
+#logo
+{
+    background: url('../images/logo.png') no-repeat;
+    width:127px;
+    height:27px;
+    position:relative;
+	top:30px;
+	left:25px;
+	float:left;
+	margin:0 0 0px 0;
+	padding:0px;
+	z-index:99;
+	display:block;
+}
+
+a#facebook_login
+{
+    display:block;
+    clear:none;
+    width:87px;
+    height:21px;
+    background: url('../images/login.png') no-repeat;
+    margin-left:auto;
+    margin-right:auto;
+    box-shadow: 0px 0px 26px #0088FF;
+}
+
+a#facebook_login:hover
+{
+    box-shadow: 0px 0px 16px #00EEFF;
+}
+
+
+.button, .wall
+{
+    display:block;
+    border: 2px solid #AADDFF;
+    text-align: center;
+    padding:20px;
+    border-radius:10px 10px;
+    margin:20px;
+    cursor:pointer;
+
+}
+
+.button
+{
+    margin-left:auto;
+    margin-right:auto;
+    width: 150px;
+    clear:both;
+}
+
+
+.wall
+{
+    width:310px;
+    padding-top:50px;
+    padding-bottom:50px;
+    float:left;
+}
+
+.button:hover, .wall:hover
+{
+	box-shadow: 0px 0px 16px #88CCFF;
+}
+
+#walls
+{
+    width:800px;
+    margin:auto;
+    overflow:overlay;
+}
+
+.wall_info_link
+{
+    display:block;
+}
+
+.button_group
+{
+    width:480px;
+    margin:auto;
+    overflow:overlay;
+}
+
+.wall div.wall_name
+{
+    margin-bottom:30px;
+    padding-bottom:30px;
+}
+
+.wall div.wall_name a
+{
+    font-family: 'Raleway', sans-serif;
+	font-size:36px;
+	font-weight:normal;
+	color: #294c63;
+	vertical-align:center;
+	font-smooth: always;
+	text-shadow: 0px 0px 16px #8fbccb;
+	text-decoration:none;
+}
+
+.wall div.wall_name a:hover
+{
+	color: #294c63;
+	text-shadow: 0px 0px 16px #0088FF;
 }
 
 #wallname
@@ -97,7 +257,9 @@ span.close_quotation_mark
 	color: #294c63;
 	vertical-align:center;
 	text-align: center;
-	padding-top:30px;
+	padding-top:20px;
+	font-smooth: always;
+	text-shadow: 0px 0px 16px #8fbccb;
 }
 
 div#user
@@ -106,6 +268,7 @@ div#user
 	padding:0;
 	margin:0;
 	padding-top:10px;
+	text-align: right;
 }
 
 div#headbar_center
@@ -166,12 +329,15 @@ a
 	border:solid 1px #0AF;
 	box-shadow: 0px 0px 15px #BEF;
 }
+input
+{
+  	padding:8px;
+}
 input[type='submit']
 {
 	padding:8px;
 	padding-left:15px;
 	padding-right:15px;
-	
 }
 .right
 {
@@ -181,13 +347,96 @@ width: 100px;
 }
 #center_column
 {
-padding:30px;
-padding-top:150px;
-margin-left:auto;
-margin-right:auto;
-width:1000px;
-box-shadow: 0px 0px 35px #CCC;
-min-height:1200px;
-padding-bottom:200px;
+    padding:30px;
+    padding-top:150px;
+    margin-left:auto;
+    margin-right:auto;
+    width:1000px;
+    box-shadow: 0px 0px 35px #CCC;
+    min-height:1200px;
+    padding-bottom:200px;
+    border-bottom-right-radius: 10px 10px;
+	border-bottom-left-radius: 10px 10px;
+	background:#ffffff;
+	
 }
+
+div#facebook_login_box
+{
+    background: #EDF4FF;
+    border-top: 1px solid #AACCFF;
+    border-bottom: 1px solid #AACCFF;
+    padding:30px;
+    margin-left:-30px;
+    margin-right:-30px;
+}
+
+table#members
+{
+    border: 1px solid #AACCFF;
+    padding:0px;
+    width:400px;
+}
+
+tr.member
+{
+    display:block;
+    padding:3px;
+    vertical-align: center;
+}
+
+tr#addMemberRow
+{
+    cursor: pointer;
+}
+
+tr.member span.name
+{
+    margin-top:auto;
+    margin-bottom:auto;
+    color: #777;
+    vertical-align: center;
+    cursor:default;
+}
+
+tr.member img
+{
+     border: 1px solid #AACCFF;
+     margin-right:10px;
+     width: 50px;
+     height:50px;
+}
+
+tr.member:hover
+{
+    background: #EDF4FF;
+}
+
+div.centered_form label
+{
+    color:#777;
+    position:relative;
+    display:block;
+    left: -100px;
+    top: 25px;
+    width:100px;
+}
+
+div.centered_form
+{
+    width:400px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+a#addMembers
+{
+    margin-left:auto;
+    margin-right:auto;
+    clear:both;
+}
+
+.addMembers
+{
+    cursor: pointer;
 }

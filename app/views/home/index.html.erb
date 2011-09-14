@@ -1,3 +1,26 @@
-<% content_for :heading do %>Welcome<% end %>
+<% content_for :heading do %>What is Quodit?<% end %>
+<% content_for :title do %>Welcome to Quodit<% end %>
 
-You are not logged in! <%= link_to "login with facebook", "/auth/facebook" %>
+<ul id="quotes">
+	<li id="quote">
+		<span class="open_quotation_mark">&#8220;</span>
+		<span class="quote_text">
+            <!--
+            Every friend group has quotes that should be preserved for eternity, but preserved within the privacy of that group.
+            </br></br>
+            This is what Quodit does.-->
+            Some clever quote that explains it all...
+        </span>
+		<span class="close_quotation_mark">&#8221;</span>
+        <p class="quote_metadata first">- The Three Founders</p>
+        <p class="quote_metadata">September, 2011</p>
+	</li>
+</ul>
+
+<div id="facebook_login_box">
+<div style="text-align:center">
+<p>Login with Facebook to join or create a private wall</p>
+</div>
+<br />
+<a id="facebook_login" href="/auth/facebook"></a>
+</div>

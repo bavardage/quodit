@@ -1,14 +1,25 @@
 <% content_for(:title) { "Home" } %>
 <% content_for :heading do %>Walls<% end %>
-Hi, <%= current_user.name %>. 
 
-<h3> You are member of </h3>
+<script type="text/javascript">
 
-<ul>
+    $(document).ready(function () {
+        $("div[href]").click(function () { document.location = $(this).attr("href"); });
+       
+
+    });
+</script>
+<div class="button_group">
+<a href="<%= new_wall_path %>" class="button">Create new wall</a> 
+</div>
+<div id="walls">
 <% current_user.membered_walls.each do |w| %>
-<li> <%= link_to w.name, wall_path(w) %>
+<div class="wall" href="<%= wall_path(w) %>">
+    <div class="wall_name"><%= link_to w.name, wall_path(w) %></div>
+    <p class="wall_info">7 Members</p>
+    <p class="wall_info">20 Quotes</p>
+    <a class="wall_info_link" href="#">Add Members</a>
+</div>
 <% end %>
-</ul>
-
-<h3> <%= link_to "Create new wall", new_wall_path %>
+</div>
 
