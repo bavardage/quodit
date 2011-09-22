@@ -31,7 +31,7 @@
                 members.push({ name: response.to.name, id: response.to.id });
                 $("table#members tr#addMemberRow").remove();
                 addAddMoreMembersButton("Add some more members");
-                $("#members_field").attr('value', $.toJson(members));
+                $("#members_field").attr('value', $.toJSON(members));
             });
         }
     }
