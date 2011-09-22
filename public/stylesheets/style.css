@@ -43,10 +43,9 @@ ul#quotes
 
 li#quote, p.quote_metadata, p.no_quotes
 {
-    font-family: 'Raleway', sans-serif;
-	font-size:18px;
+    font-family: 'Josefin Sans', sans-serif;
+	font-size:20px;
 	line-height:30px;
-	font-weight:500;
 	font-smooth: always;
 }
 
@@ -231,7 +230,7 @@ a#facebook_login:hover
 
 .wall div.wall_name a
 {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
 	font-size:36px;
 	font-weight:normal;
 	color: #294c63;
@@ -251,13 +250,13 @@ a#facebook_login:hover
 {
 	margin: 0;
 	padding: 0;
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Josefin Sans', sans-serif;
 	font-size:36px;
 	font-weight:normal;
 	color: #294c63;
 	vertical-align:center;
 	text-align: center;
-	padding-top:20px;
+	padding-top:15px;
 	font-smooth: always;
 	text-shadow: 0px 0px 16px #8fbccb;
 }
